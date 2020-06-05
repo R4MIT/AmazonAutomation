@@ -22,7 +22,7 @@ public class BaseClass extends BrowserUtility {
         Properties properties = new Properties();
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("C:\\AmazonAutomation\\src\\main\\java\\Config\\Config.Properties");
+            fis = new FileInputStream("C:\\GitHub_AmazonAutomation\\AmazonAutomation\\src\\main\\java\\Config\\Config.Properties");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
