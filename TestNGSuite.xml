@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+
+<suite name="AmazonAutomation" verbose="1" >
+    <listeners>
+        <listener class-name="TestScripts.Listeners"/>
+    </listeners>
+    <test name="TestRun" preserve-order="true">
+        <classes>
+            <class name="TestScripts.SignInTest" />
+        </classes>
+    </test>
+</suite>
