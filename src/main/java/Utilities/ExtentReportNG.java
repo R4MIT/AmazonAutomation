@@ -7,7 +7,7 @@ public class ExtentReportNG {
 
    static ExtentReports extent;
     public  static ExtentReports getReportObject(){
-        String path = System.getProperty("user.dir")+"\\ExtentReports\\index.html";
+        String path = System.getProperty("user.dir")+"./ExtentReports/index.html";
         ExtentSparkReporter reporter = new ExtentSparkReporter(path);
         reporter.config().setReportName("Amazon Automation Results");
         reporter.config().setDocumentTitle("TestReports");
@@ -15,7 +15,6 @@ public class ExtentReportNG {
         extent.attachReporter(reporter);
         extent.setSystemInfo("Tester","Ramit");
         return extent;
-
     }
 
 }

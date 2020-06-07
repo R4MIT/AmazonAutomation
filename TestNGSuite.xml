@@ -5,9 +5,10 @@
     <listeners>
         <listener class-name="TestScripts.Listeners"/>
     </listeners>
-    <test name="TestRun" preserve-order="true">
+    <test name="TestRunInvalidCredentials" preserve-order="true">
         <classes>
             <class name="TestScripts.SignInTest" />
+            <class name="TestScripts.DataDriven"/>
         </classes>
     </test>
 </suite>

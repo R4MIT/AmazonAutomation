@@ -2,13 +2,18 @@ package TestScripts;
 
 import Utilities.BaseClass;
 import Utilities.ExtentReportNG;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.markuputils.Markup;
+import com.aventstack.extentreports.model.ExceptionInfo;
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.WebDriver;
+import org.sqlite.date.ExceptionUtils;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Listeners extends BaseClass implements ITestListener {
     ExtentReports extent = ExtentReportNG.getReportObject();
@@ -24,7 +29,6 @@ public class Listeners extends BaseClass implements ITestListener {
     }
 
     public void onTestFailure(ITestResult result) {
-        test.fail(result.getThrowable());
         WebDriver driver = null;
         String testMethodName = result.getMethod().getMethodName();
         try {
@@ -34,7 +38,13 @@ public class Listeners extends BaseClass implements ITestListener {
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
-        getScreenshotPath(testMethodName, driver );
+//        test.addScreenCaptureFromPath(getScreenshotPath(testMethodName,driver));
+//        test.fail(MediaEntityBuilder.createScreenCaptureFromPath(getScreenshotPath(testMethodName,driver)));
+        test.fail(result.getThrowable());
+        test.log(Status.FAIL, "Test Failed");
+//        test.getStatus().valueOf(testMethodName);
+        getScreenshotPath(testMethodName,driver);
+
     }
 
     public void onTestSkipped(ITestResult result) {
