@@ -1,5 +1,5 @@
 package TestScripts;
-import PageObjects.HomePage;
+
 import PageObjects.SignInPage;
 import Utilities.BaseClass;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -8,13 +8,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.io.IOException;
+
 import java.util.concurrent.TimeUnit;
 
-public class SignInTest extends BaseClass{
+public class SignInTest extends BaseClass {
     WebDriver driver = setBrowserAndUrl();
 
-    @Test(priority = 1, dataProvider = "validEmail",dataProviderClass = BaseClass.class)
+    @Test(priority = 1, dataProvider = "validEmail", dataProviderClass = BaseClass.class)
     public void inValidEmail(String username) {
         System.out.println("SignIn Page URL is  " + driver.getCurrentUrl());
         System.out.println(username);
@@ -30,7 +30,7 @@ public class SignInTest extends BaseClass{
                 "Email entered is correct");
     }
 
-    @Test(priority = 2, dataProvider = "inValidPassword",dataProviderClass = BaseClass.class)
+    @Test(priority = 2, dataProvider = "inValidPassword", dataProviderClass = BaseClass.class)
     public void validEmailInValidPassword(String emailAddress, String password) {
         System.out.println("SignIn Page URL is  " + driver.getCurrentUrl());
         System.out.println(emailAddress);
@@ -41,7 +41,7 @@ public class SignInTest extends BaseClass{
                 "Email Label is not as expected.");
         signIn.inputEmailField(emailAddress);
         signIn.clickContinueButton();
-        WebDriverWait wt = new WebDriverWait(driver,5);
+        WebDriverWait wt = new WebDriverWait(driver, 5);
         wt.until(ExpectedConditions.visibilityOf(signIn.emailEnteredPreviously()));
         Assert.assertTrue(signIn.verifyEmailEnteredIsCorrect());
         Assert.assertEquals(signIn.getConfirmEmailId(), emailAddress, "Email id is not matching");
@@ -54,7 +54,8 @@ public class SignInTest extends BaseClass{
                         "please re-enter your password and then enter the characters as they are shown in the image below.",
                 "Password entered is correct");
     }
-    @Test( priority = 3, enabled = false, dataProvider = "validCredentials", dataProviderClass = BaseClass.class)
+
+    @Test(priority = 3, dataProvider = "validCredentials", dataProviderClass = BaseClass.class)
     public void validEmailAndPassword(String emailAddress, String password) {
         System.out.println(emailAddress);
         System.out.println(password);
