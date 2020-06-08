@@ -2,17 +2,15 @@ package TestScripts;
 
 import Utilities.BaseClass;
 import Utilities.ExtentReportNG;
-import com.aventstack.extentreports.*;
-import com.aventstack.extentreports.markuputils.Markup;
-import com.aventstack.extentreports.model.ExceptionInfo;
-import com.relevantcodes.extentreports.LogStatus;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
-import org.sqlite.date.ExceptionUtils;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Listeners extends BaseClass implements ITestListener {
@@ -38,12 +36,24 @@ public class Listeners extends BaseClass implements ITestListener {
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
-//        test.addScreenCaptureFromPath(getScreenshotPath(testMethodName,driver));
-//        test.fail(MediaEntityBuilder.createScreenCaptureFromPath(getScreenshotPath(testMethodName,driver)));
+        try {
+            String workingDir = System.getProperty("user.dir");
+            System.out.println("##########"+workingDir);
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$"+workingDir+"\\ExtentReports\\validEmailInValidPassword.png");
+            System.out.println("******************************************************"+getScreenshotPath(testMethodName,driver));
+            test.addScreenCaptureFromPath(workingDir+"\\ExtentReports\\validEmailInValidPassword.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       /* try {
+            test.fail(MediaEntityBuilder.createScreenCaptureFromPath(getScreenshotPath(testMethodName,driver)).build().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         test.fail(result.getThrowable());
         test.log(Status.FAIL, "Test Failed");
 //        test.getStatus().valueOf(testMethodName);
-        getScreenshotPath(testMethodName,driver);
+//        getScreenshotPath(testMethodName,driver);
 
     }
 

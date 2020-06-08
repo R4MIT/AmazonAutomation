@@ -63,7 +63,7 @@ public class BaseClass extends BrowserUtility {
         return data;*/
     }
 
-    public void getScreenshotPath(String testMethodName, WebDriver driver){
+    public String  getScreenshotPath(String testMethodName, WebDriver driver){
         TakesScreenshot ts = (TakesScreenshot)driver;
         String destinationFile = "./ExtentReports/"+testMethodName+".png";
         File source = ts.getScreenshotAs(OutputType.FILE);
@@ -73,7 +73,7 @@ public class BaseClass extends BrowserUtility {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        return destinationFile;
+        return destinationFile;
     }
 //    @DataProvider (name = "excelData")
 
