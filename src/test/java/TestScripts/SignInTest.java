@@ -55,7 +55,7 @@ public class SignInTest extends BaseClass {
                 "Password entered is correct");
     }
 
-    @Test(priority = 3, dataProvider = "validCredentials", dataProviderClass = BaseClass.class)
+    @Test(priority = 3,  enabled = false, dataProvider = "validCredentials", dataProviderClass = BaseClass.class)
     public void validEmailAndPassword(String emailAddress, String password) {
         System.out.println(emailAddress);
         System.out.println(password);
