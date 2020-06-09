@@ -38,7 +38,8 @@ public class BrowserUtility{
         Properties properties = new Properties();
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("C:\\Users\\ramit.ramit@sap.com\\Downloads\\AmazonAutomation-devBranch\\AmazonAutomation-devBranch\\src\\main\\java\\config\\Config.Properties");
+//            fis = new FileInputStream("C:\\GitHub_AmazonAutomation\\AmazonAutomation\\src\\main\\java\\config\\Config.Properties");
+            fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\config\\Config.Properties");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
