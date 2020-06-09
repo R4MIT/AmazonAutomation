@@ -3,7 +3,7 @@
 
 <suite name="AmazonAutomation" verbose="1" >
     <listeners>
-        <listener class-name="TestScripts.Listeners"/>
+        <listener class-name="TestScripts.ListenersWithBase64"/>
     </listeners>
     <test name="TestRun" preserve-order="true">
         <classes>
