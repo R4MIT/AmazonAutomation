@@ -1,4 +1,4 @@
-package PageObjects;
+package pageObjects;
 
 public class CreateAccountPage {
 

@@ -1,7 +1,7 @@
 package TestScripts;
 
-import Utilities.BaseClass;
-import Utilities.ExtentReportNG;
+import utilities.BaseClass;
+import utilities.ExtentReportNG;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
+import java.io.IOException;
 
 public class Listeners extends BaseClass implements ITestListener {
     ExtentReports extent = ExtentReportNG.getReportObject();
@@ -24,7 +26,6 @@ public class Listeners extends BaseClass implements ITestListener {
     }
 
     public void onTestFailure(ITestResult result) {
-        test.fail(result.getThrowable());
         WebDriver driver = null;
         String testMethodName = result.getMethod().getMethodName();
         try {
@@ -34,7 +35,25 @@ public class Listeners extends BaseClass implements ITestListener {
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
-        getScreenshotPath(testMethodName, driver );
+        try {
+            String workingDir = System.getProperty("user.dir");
+            System.out.println("##########"+workingDir);
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$"+workingDir+"\\ExtentReports\\validEmailInValidPassword.png");
+            System.out.println("******************************************************"+getScreenshotPath(testMethodName,driver));
+            test.addScreenCaptureFromPath(workingDir+"\\ExtentReports\\validEmailInValidPassword.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       /* try {
+            test.fail(MediaEntityBuilder.createScreenCaptureFromPath(getScreenshotPath(testMethodName,driver)).build().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        test.fail(result.getThrowable());
+        test.log(Status.FAIL, "Test Failed");
+//        test.getStatus().valueOf(testMethodName);
+//        getScreenshotPath(testMethodName,driver);
+
     }
 
     public void onTestSkipped(ITestResult result) {
